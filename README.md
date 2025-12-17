@@ -1,4 +1,4 @@
-# AI语音助手 - Web版本
+# AI语音助手 - Echoo
 
 一个基于Flask和DashScope的实时语音对话Web应用，具有未来科技感的界面设计。
 
@@ -68,7 +68,7 @@ pip install flask flask-cors openai python-dotenv soundfile numpy
 ```bash
 DASHSCOPE_API_KEY=your_api_key_here
 DASHSCOPE_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
-DASHSCOPE_MODEL_NAME=qwen-plus  # 或其他支持的模型
+DASHSCOPE_MODEL_NAME=qwen3-omni-flash-2025-12-01  # 或其他支持的模型
 ```
 
 ### 3. 启动应用
@@ -169,7 +169,7 @@ python app.py
 
 ## 许可证
 
-MIT License
+Apache-2.0 license
 
 ## 贡献
 
