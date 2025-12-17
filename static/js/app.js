@@ -1,3 +1,62 @@
+// ===== 语音角色数据 =====
+const VOICE_DATA = [
+    // 中文女声
+    { id: "Cherry", nameEn: "Cherry", nameCn: "芊悦", desc: "阳光积极、亲切自然小姐姐", category: "chinese-female", gender: "female", emoji: "🌸" },
+    { id: "Serena", nameEn: "Serena", nameCn: "苏瑶", desc: "温柔小姐姐", category: "chinese-female", gender: "female", emoji: "🌙" },
+    { id: "Chelsie", nameEn: "Chelsie", nameCn: "千雪", desc: "二次元虚拟女友", category: "chinese-female", gender: "female", emoji: "❄️" },
+    { id: "Momo", nameEn: "Momo", nameCn: "茉兔", desc: "撒娇搞怪，逗你开心", category: "chinese-female", gender: "female", emoji: "🐰" },
+    { id: "Vivian", nameEn: "Vivian", nameCn: "十三", desc: "拽拽的、可爱的小暴躁", category: "chinese-female", gender: "female", emoji: "😤" },
+    { id: "Moon", nameEn: "Moon", nameCn: "月白", desc: "率性帅气的月白", category: "chinese-male", gender: "male", emoji: "🌕" },
+    { id: "Maia", nameEn: "Maia", nameCn: "四月", desc: "知性与温柔的碰撞", category: "chinese-female", gender: "female", emoji: "🌷" },
+    { id: "Bella", nameEn: "Bella", nameCn: "萌宝", desc: "喝酒不打醉拳的小萝莉", category: "chinese-female", gender: "female", emoji: "🎀" },
+    { id: "Katerina", nameEn: "Katerina", nameCn: "卡捷琳娜", desc: "御姐音色，韵律回味十足", category: "chinese-female", gender: "female", emoji: "👑" },
+    // 中文男声
+    { id: "Ethan", nameEn: "Ethan", nameCn: "晨煦", desc: "阳光、温暖、活力、朝气", category: "chinese-male", gender: "male", emoji: "☀️" },
+    { id: "Kai", nameEn: "Kai", nameCn: "凯", desc: "耳朵的一场SPA", category: "chinese-male", gender: "male", emoji: "🎧" },
+    { id: "Nofish", nameEn: "Nofish", nameCn: "不吃鱼", desc: "不会翘舌音的设计师", category: "chinese-male", gender: "male", emoji: "🐟" },
+    { id: "Ryan", nameEn: "Ryan", nameCn: "甜茶", desc: "节奏拉满，戏感炸裂", category: "chinese-male", gender: "male", emoji: "🍵" },
+    { id: "Aiden", nameEn: "Aiden", nameCn: "艾登", desc: "精通厨艺的美语大男孩", category: "chinese-male", gender: "male", emoji: "👨‍🍳" },
+    // 英文
+    { id: "Jennifer", nameEn: "Jennifer", nameCn: "詹妮弗", desc: "品牌级、电影质感般美语女声", category: "english", gender: "female", emoji: "🎬" },
+    // 方言
+    { id: "Jada", nameEn: "Jada", nameCn: "上海-阿珍", desc: "风风火火的沪上阿姐", category: "dialect", gender: "female", emoji: "🏙️" },
+    { id: "Dylan", nameEn: "Dylan", nameCn: "北京-晓东", desc: "北京胡同里长大的少年", category: "dialect", gender: "male", emoji: "🏛️" },
+    { id: "Sunny", nameEn: "Sunny", nameCn: "四川-晴儿", desc: "甜到你心里的川妹子", category: "dialect", gender: "female", emoji: "🌶️" },
+    { id: "Eric", nameEn: "Eric", nameCn: "四川-程川", desc: "跳脱市井的四川成都男子", category: "dialect", gender: "male", emoji: "🐼" },
+    { id: "Li", nameEn: "Li", nameCn: "南京-老李", desc: "耐心的瑜伽老师", category: "dialect", gender: "male", emoji: "🧘" },
+    { id: "Marcus", nameEn: "Marcus", nameCn: "陕西-秦川", desc: "面宽话短，心实声沉——老陕的味道", category: "dialect", gender: "male", emoji: "🍜" },
+    { id: "Roy", nameEn: "Roy", nameCn: "闽南-阿杰", desc: "诙谐直爽、市井活泼的台湾哥仔", category: "dialect", gender: "male", emoji: "🌊" },
+    { id: "Peter", nameEn: "Peter", nameCn: "天津-李彼得", desc: "天津相声，专业捧哏", category: "dialect", gender: "male", emoji: "🎭" },
+    { id: "Rocky", nameEn: "Rocky", nameCn: "粤语-阿强", desc: "幽默风趣的阿强，在线陪聊", category: "dialect", gender: "male", emoji: "🦁" },
+    { id: "Kiki", nameEn: "Kiki", nameCn: "粤语-阿清", desc: "甜美的港妹闺蜜", category: "dialect", gender: "female", emoji: "🌺" },
+    // 多语言
+    { id: "Bodega", nameEn: "Bodega", nameCn: "西班牙语-博德加", desc: "热情的西班牙大叔", category: "foreign", gender: "male", emoji: "🇪🇸" },
+    { id: "Sonrisa", nameEn: "Sonrisa", nameCn: "西班牙语拉美-索尼莎", desc: "热情开朗的拉美大姐", category: "foreign", gender: "female", emoji: "💃" },
+    { id: "Alek", nameEn: "Alek", nameCn: "俄语-阿列克", desc: "战斗民族的冷，毛呢大衣下的暖", category: "foreign", gender: "male", emoji: "🇷🇺" },
+    { id: "Dolce", nameEn: "Dolce", nameCn: "意大利语-多尔切", desc: "慵懒的意大利大叔", category: "foreign", gender: "male", emoji: "🇮🇹" },
+    { id: "Sohee", nameEn: "Sohee", nameCn: "韩语-素熙", desc: "温柔开朗，情绪丰富的韩国欧尼", category: "foreign", gender: "female", emoji: "🇰🇷" },
+    { id: "Ono Anna", nameEn: "Ono Anna", nameCn: "日语-小野杏", desc: "鬼灵精怪的青梅竹马", category: "foreign", gender: "female", emoji: "🇯🇵" },
+    { id: "Lenn", nameEn: "Lenn", nameCn: "德语-莱恩", desc: "理性是底色，叛逆藏在细节里", category: "foreign", gender: "male", emoji: "🇩🇪" },
+    { id: "Emilien", nameEn: "Emilien", nameCn: "法语-埃米尔安", desc: "浪漫的法国大哥哥", category: "foreign", gender: "male", emoji: "🇫🇷" },
+    { id: "Andre", nameEn: "Andre", nameCn: "葡萄牙语欧-安德雷", desc: "声音磁性，自然舒服、沉稳男生", category: "foreign", gender: "male", emoji: "🇵🇹" },
+    { id: "Radio Gol", nameEn: "Radio Gol", nameCn: "葡萄牙语巴-拉迪奥戈尔", desc: "足球诗人！用名字为你们解说足球", category: "foreign", gender: "male", emoji: "🇧🇷" },
+    // 特色角色
+    { id: "Eldric Sage", nameEn: "Eldric Sage", nameCn: "沧明子", desc: "沉稳睿智的老者，沧桑如松却心明如镜", category: "character", gender: "male", emoji: "🧙" },
+    { id: "Mia", nameEn: "Mia", nameCn: "乖小妹", desc: "温顺如春水，乖巧如初雪", category: "character", gender: "female", emoji: "🎀" },
+    { id: "Mochi", nameEn: "Mochi", nameCn: "沙小弥", desc: "聪明伶俐的小大人，童真未泯却早慧如禅", category: "character", gender: "male", emoji: "👶" },
+    { id: "Bellona", nameEn: "Bellona", nameCn: "燕铮莺", desc: "声音洪亮，吐字清晰，金戈铁马入梦来", category: "character", gender: "female", emoji: "⚔️" },
+    { id: "Vincent", nameEn: "Vincent", nameCn: "田叔", desc: "独特沙哑烟嗓，道尽千军万马与江湖豪情", category: "character", gender: "male", emoji: "🎤" },
+    { id: "Bunny", nameEn: "Bunny", nameCn: "萌小姬", desc: "“萌属性”爆棚的小萝莉", category: "character", gender: "female", emoji: "🐱" },
+    { id: "Neil", nameEn: "Neil", nameCn: "阿闻", desc: "平直的语调，字正腔圆，专业新闻主持人", category: "character", gender: "male", emoji: "📺" },
+    { id: "Elias", nameEn: "Elias", nameCn: "墨讲师", desc: "保持学科严谨性，复杂知识转化认知模块", category: "character", gender: "male", emoji: "📚" },
+    { id: "Arthur", nameEn: "Arthur", nameCn: "徐大爷", desc: "被岁月和旱烟浸泡过的质朴嗓音", category: "character", gender: "male", emoji: "👴" },
+    { id: "Nini", nameEn: "Nini", nameCn: "邻家妹妹", desc: "糯米糍一样又软又黏的嗓音", category: "character", gender: "female", emoji: "🍡" },
+    { id: "Ebona", nameEn: "Ebona", nameCn: "诡婆婆", desc: "低语像一把生锈的钥匙，转动幽暗角落", category: "character", gender: "female", emoji: "🔮" },
+    { id: "Seren", nameEn: "Seren", nameCn: "小婉", desc: "温和舒缓的声线，助你更快进入睡眠", category: "character", gender: "female", emoji: "💤" },
+    { id: "Pip", nameEn: "Pip", nameCn: "顽皮小孩", desc: "调皮捣蛋却充满童真，记忆中的小新", category: "character", gender: "male", emoji: "😜" },
+    { id: "Stella", nameEn: "Stella", nameCn: "美少女阿月", desc: "甜到发腻的迷糊少女音，代表月亮消灭你", category: "character", gender: "female", emoji: "🌟" },
+];
+
 // ===== 应用状态管理 =====
 class VoiceChatApp {
     constructor() {
@@ -10,8 +69,11 @@ class VoiceChatApp {
         this.dataArray = null;
         this.waveformInterval = null;
         this.isCtrlPressed = false;
+        this.selectedVoice = 'Cherry';
+        this.aiThinkingMessage = null;
 
         this.initializeElements();
+        this.initializeVoiceSelector();
         this.attachEventListeners();
     }
 
@@ -25,6 +87,152 @@ class VoiceChatApp {
         // 悬浮按钮相关元素
         this.floatingVoiceBtn = document.getElementById('floatingVoiceBtn');
         this.floatingBtnInner = this.floatingVoiceBtn.querySelector('.floating-btn-inner');
+
+        // 语音选择器相关元素
+        this.voiceSelectBtn = document.getElementById('voiceSelectBtn');
+        this.selectedVoiceName = document.getElementById('selectedVoiceName');
+        this.voiceModal = document.getElementById('voiceModal');
+        this.voiceModalClose = document.getElementById('voiceModalClose');
+        this.voiceModalBackdrop = this.voiceModal.querySelector('.voice-modal-backdrop');
+        this.voiceTabs = document.getElementById('voiceTabs');
+        this.voiceGrid = document.getElementById('voiceGrid');
+        this.voiceSearch = document.getElementById('voiceSearch');
+    }
+
+    // ===== 语音选择器初始化 =====
+    initializeVoiceSelector() {
+        this.renderVoiceCards();
+        this.attachVoiceSelectorEvents();
+    }
+
+    renderVoiceCards() {
+        this.voiceGrid.innerHTML = '';
+        VOICE_DATA.forEach(voice => {
+            const card = document.createElement('div');
+            card.className = `voice-card${voice.id === this.selectedVoice ? ' selected' : ''}`;
+            card.dataset.voiceId = voice.id;
+            card.dataset.category = voice.category;
+            
+            const avatarClass = voice.category === 'dialect' ? 'dialect' : 
+                               voice.category === 'foreign' ? 'foreign' :
+                               voice.category === 'character' ? 'character' :
+                               voice.gender;
+            
+            card.innerHTML = `
+                <div class="voice-card-header">
+                    <div class="voice-card-avatar ${avatarClass}">${voice.emoji}</div>
+                    <div class="voice-card-name">
+                        <div class="name-en">${voice.nameEn}</div>
+                        <div class="name-cn">${voice.nameCn}</div>
+                    </div>
+                </div>
+                <div class="voice-card-desc">${voice.desc}</div>
+            `;
+            
+            card.addEventListener('click', () => this.selectVoice(voice));
+            this.voiceGrid.appendChild(card);
+        });
+    }
+
+    attachVoiceSelectorEvents() {
+        // 打开模态框
+        this.voiceSelectBtn.addEventListener('click', () => this.openVoiceModal());
+        
+        // 关闭模态框
+        this.voiceModalClose.addEventListener('click', () => this.closeVoiceModal());
+        this.voiceModalBackdrop.addEventListener('click', () => this.closeVoiceModal());
+        
+        // ESC关闭模态框
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.voiceModal.classList.contains('active')) {
+                this.closeVoiceModal();
+            }
+        });
+
+        // 分类标签切换
+        this.voiceTabs.addEventListener('click', (e) => {
+            if (e.target.classList.contains('voice-tab')) {
+                this.voiceTabs.querySelectorAll('.voice-tab').forEach(tab => tab.classList.remove('active'));
+                e.target.classList.add('active');
+                this.filterVoices(e.target.dataset.category, this.voiceSearch.value);
+            }
+        });
+
+        // 搜索功能
+        this.voiceSearch.addEventListener('input', (e) => {
+            const activeTab = this.voiceTabs.querySelector('.voice-tab.active');
+            this.filterVoices(activeTab.dataset.category, e.target.value);
+        });
+    }
+
+    openVoiceModal() {
+        this.voiceModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        this.voiceSearch.focus();
+    }
+
+    closeVoiceModal() {
+        this.voiceModal.classList.remove('active');
+        document.body.style.overflow = '';
+        this.voiceSearch.value = '';
+        this.filterVoices('all', '');
+        this.voiceTabs.querySelectorAll('.voice-tab').forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.category === 'all');
+        });
+    }
+
+    filterVoices(category, searchText) {
+        const cards = this.voiceGrid.querySelectorAll('.voice-card');
+        const search = searchText.toLowerCase().trim();
+        let hasVisible = false;
+
+        cards.forEach(card => {
+            const voiceId = card.dataset.voiceId;
+            const voice = VOICE_DATA.find(v => v.id === voiceId);
+            
+            const matchCategory = category === 'all' || card.dataset.category === category;
+            const matchSearch = !search || 
+                voice.nameEn.toLowerCase().includes(search) ||
+                voice.nameCn.includes(search) ||
+                voice.desc.includes(search);
+
+            const visible = matchCategory && matchSearch;
+            card.classList.toggle('hidden', !visible);
+            if (visible) hasVisible = true;
+        });
+
+        // 显示无结果提示
+        let noResults = this.voiceGrid.querySelector('.no-results');
+        if (!hasVisible) {
+            if (!noResults) {
+                noResults = document.createElement('div');
+                noResults.className = 'no-results';
+                noResults.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16 16L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <p>未找到匹配的语音角色</p>
+                `;
+                this.voiceGrid.appendChild(noResults);
+            }
+            noResults.style.display = 'block';
+        } else if (noResults) {
+            noResults.style.display = 'none';
+        }
+    }
+
+    selectVoice(voice) {
+        this.selectedVoice = voice.id;
+        this.voiceSelect.value = voice.id;
+        this.selectedVoiceName.textContent = `${voice.nameEn} / ${voice.nameCn}`;
+        
+        // 更新卡片选中状态
+        this.voiceGrid.querySelectorAll('.voice-card').forEach(card => {
+            card.classList.toggle('selected', card.dataset.voiceId === voice.id);
+        });
+        
+        this.closeVoiceModal();
     }
 
     attachEventListeners() {
@@ -162,6 +370,7 @@ class VoiceChatApp {
 
         // 停止录音后，显示"AI正在思考"状态
         this.resetRecordingState();
+        this.showAiThinking();
 
         try {
             // 转换为base64
@@ -181,6 +390,8 @@ class VoiceChatApp {
             console.error('处理录音失败:', error);
             this.showError('处理语音消息失败，请重试');
             this.removeLastMessage();
+        } finally {
+            this.removeAiThinking();
         }
     }
 
@@ -498,6 +709,47 @@ class VoiceChatApp {
 
     hideLoading() {
         this.loadingOverlay.classList.remove('active');
+    }
+
+    showAiThinking() {
+        this.removeAiThinking();
+        this.showLoading();
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message ai-message ai-thinking';
+
+        messageDiv.innerHTML = `
+            <div class="message-avatar ai-avatar">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="message-content">
+                <div class="ai-thinking-header">
+                    <div class="dot-pulse"><span></span><span></span><span></span></div>
+                    <span class="ai-thinking-text">AI正在思考，请稍候...</span>
+                </div>
+                <div class="ai-thinking-bars">
+                    <div class="shimmer-bar bar-1"></div>
+                    <div class="shimmer-bar bar-2"></div>
+                    <div class="shimmer-bar bar-3"></div>
+                </div>
+            </div>
+        `;
+
+        this.chatMessages.appendChild(messageDiv);
+        this.aiThinkingMessage = messageDiv;
+        this.scrollToBottom();
+    }
+
+    removeAiThinking() {
+        if (this.aiThinkingMessage) {
+            this.aiThinkingMessage.remove();
+            this.aiThinkingMessage = null;
+        }
+        this.hideLoading();
     }
 
     showError(message) {

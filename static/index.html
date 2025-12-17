@@ -51,7 +51,7 @@
         <!-- 设置面板（简化版） -->
         <div class="settings-panel">
             <div class="voice-selector">
-                <label for="voiceSelect">
+                <label>
                     <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2C13.1046 2 14 2.89543 14 4V12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12V4C10 2.89543 10.8954 2 12 2Z" fill="currentColor"/>
                         <path d="M19 10V12C19 15.866 15.866 19 12 19C8.13401 19 5 15.866 5 12V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -60,13 +60,46 @@
                     </svg>
                     语音角色
                 </label>
-                <select id="voiceSelect" class="voice-select">
-                    <option value="Cherry">Cherry - 清甜女声</option>
-                    <option value="Serena">Serena - 优雅女声</option>
-                    <option value="Ethan">Ethan - 沉稳男声</option>
-                    <option value="Chelsie">Chelsie - 活泼女声</option>
-                </select>
+                <button id="voiceSelectBtn" class="voice-select-btn">
+                    <span id="selectedVoiceName">Cherry / 芊悦</span>
+                    <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <input type="hidden" id="voiceSelect" value="Cherry">
             </div>
+        </div>
+    </div>
+
+    <!-- 语音选择模态框 -->
+    <div class="voice-modal" id="voiceModal">
+        <div class="voice-modal-backdrop"></div>
+        <div class="voice-modal-content">
+            <div class="voice-modal-header">
+                <h2>选择语音角色</h2>
+                <div class="voice-search-box">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16 16L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <input type="text" id="voiceSearch" placeholder="搜索语音角色...">
+                </div>
+                <button class="voice-modal-close" id="voiceModalClose">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="voice-tabs" id="voiceTabs">
+                <button class="voice-tab active" data-category="all">全部</button>
+                <button class="voice-tab" data-category="chinese-female">中文女声</button>
+                <button class="voice-tab" data-category="chinese-male">中文男声</button>
+                <button class="voice-tab" data-category="english">英文</button>
+                <button class="voice-tab" data-category="dialect">方言</button>
+                <button class="voice-tab" data-category="foreign">多语言</button>
+                <button class="voice-tab" data-category="character">特色角色</button>
+            </div>
+            <div class="voice-grid" id="voiceGrid"></div>
         </div>
     </div>
 
