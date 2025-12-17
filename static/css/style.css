@@ -1,0 +1,844 @@
+/* ===== CSS变量定义 ===== */
+:root {
+    --primary-cyan: #00f3ff;
+    --primary-magenta: #ff00ff;
+    --primary-purple: #9d00ff;
+    --bg-dark: #0a0e27;
+    --bg-darker: #050816;
+    --text-light: #e0e6ff;
+    --text-glow: #00f3ff;
+    --glass-bg: rgba(10, 14, 39, 0.7);
+    --border-glow: rgba(0, 243, 255, 0.3);
+    --shadow-cyan: 0 0 20px rgba(0, 243, 255, 0.5);
+    --shadow-magenta: 0 0 30px rgba(255, 0, 255, 0.4);
+    --shadow-purple: 0 0 40px rgba(157, 0, 255, 0.3);
+}
+
+/* ===== 基础重置 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+/* ===== 动态背景 ===== */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 20s infinite ease-in-out;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--primary-cyan), transparent);
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--primary-magenta), transparent);
+    top: 50%;
+    right: -150px;
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, var(--primary-purple), transparent);
+    bottom: -50px;
+    left: 50%;
+    animation-delay: -10s;
+}
+
+.grid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-move 20s linear infinite;
+}
+
+.noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(50px, -50px) rotate(120deg); }
+    66% { transform: translate(-50px, 50px) rotate(240deg); }
+}
+
+@keyframes grid-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+/* ===== 主容器 ===== */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== 头部 ===== */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.title-glow {
+    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-magenta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px var(--primary-cyan));
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.title-main {
+    color: var(--text-light);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--primary-cyan);
+    opacity: 0.8;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { filter: drop-shadow(0 0 20px var(--primary-cyan)); }
+    50% { filter: drop-shadow(0 0 40px var(--primary-cyan)) drop-shadow(0 0 60px var(--primary-magenta)); }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== 聊天区域 ===== */
+.chat-area {
+    flex: 1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glow);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow-cyan);
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out 0.3s backwards;
+}
+
+.chat-messages {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-cyan), var(--primary-magenta));
+    border-radius: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== 消息样式 ===== */
+.message {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.message-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ai-avatar {
+    background: linear-gradient(135deg, var(--primary-purple), var(--primary-magenta));
+    box-shadow: var(--shadow-purple);
+}
+
+.user-avatar {
+    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+    box-shadow: var(--shadow-cyan);
+}
+
+.message-avatar svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+}
+
+.message-content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    position: relative;
+}
+
+.ai-message .message-content {
+    border-left: 3px solid var(--primary-purple);
+}
+
+.user-message .message-content {
+    border-left: 3px solid var(--primary-cyan);
+}
+
+.message-text {
+    line-height: 1.6;
+    font-size: 1.05rem;
+    font-weight: 400;
+}
+
+/* ===== 设置面板（简化版） ===== */
+.settings-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glow);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: var(--shadow-cyan);
+    animation: fadeIn 1s ease-out 0.6s backwards;
+}
+
+.voice-selector {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.voice-selector label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: var(--primary-cyan);
+    font-weight: 500;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.voice-select {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-glow);
+    border-radius: 10px;
+    color: var(--text-light);
+    font-size: 1rem;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.voice-select:focus {
+    outline: none;
+    border-color: var(--primary-cyan);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+.voice-select:hover {
+    border-color: var(--primary-cyan);
+    background: rgba(0, 243, 255, 0.1);
+}
+
+/* ===== 悬浮语音按钮 ===== */
+.floating-voice-btn {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: floatUp 1s ease-out 0.8s backwards;
+}
+
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.floating-btn-bg {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 243, 255, 0.3) 0%, transparent 70%);
+    animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.floating-btn-ripple {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.4) 0%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.floating-voice-btn.recording .floating-btn-ripple {
+    animation: ripple 1.5s ease-out infinite;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.floating-btn-inner {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-magenta), var(--primary-purple));
+    box-shadow: 0 10px 40px rgba(255, 0, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.floating-btn-inner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.floating-btn-inner:hover::before {
+    opacity: 1;
+    animation: rotate 3s linear infinite;
+}
+
+.floating-btn-inner:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 50px rgba(255, 0, 255, 0.7);
+}
+
+.floating-voice-btn.recording .floating-btn-inner {
+    background: linear-gradient(135deg, #ff3366, #ff00aa);
+    animation: recording-pulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 40px rgba(255, 51, 102, 0.8);
+}
+
+@keyframes recording-pulse {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(255, 51, 102, 0.6);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 60px rgba(255, 51, 102, 0.9);
+        transform: scale(1.03);
+    }
+}
+
+.mic-icon,
+.stop-icon {
+    width: 50px;
+    height: 50px;
+    color: white;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    transition: all 0.3s ease;
+}
+
+.stop-icon {
+    display: none;
+}
+
+.floating-voice-btn.recording .mic-icon {
+    display: none;
+}
+
+.floating-voice-btn.recording .stop-icon {
+    display: block;
+}
+
+.floating-btn-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+}
+
+.hint-text {
+    font-size: 0.9rem;
+    color: var(--primary-cyan);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.hint-shortcut {
+    font-size: 0.75rem;
+    color: rgba(224, 230, 255, 0.6);
+    font-weight: 400;
+}
+
+/* ===== 加载动画 ===== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 8, 22, 0.92);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.loading-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.loading-spinner {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.spinner-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+}
+
+.spinner-ring:nth-child(1) {
+    border-top-color: var(--primary-cyan);
+    animation-delay: 0s;
+}
+
+.spinner-ring:nth-child(2) {
+    border-top-color: var(--primary-magenta);
+    animation-delay: -0.66s;
+}
+
+.spinner-ring:nth-child(3) {
+    border-top-color: var(--primary-purple);
+    animation-delay: -0.33s;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    margin-top: 30px;
+    font-size: 1.3rem;
+    color: var(--primary-cyan);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 3px;
+    font-weight: 700;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 20px 15px;
+    }
+
+    .chat-area,
+    .settings-panel {
+        padding: 20px;
+    }
+
+    .message {
+        gap: 10px;
+    }
+
+    .message-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .message-avatar svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .message-text {
+        font-size: 0.95rem;
+    }
+
+    .floating-btn-inner {
+        width: 100px;
+        height: 100px;
+    }
+
+    .floating-btn-bg {
+        width: 120px;
+        height: 120px;
+    }
+
+    .floating-btn-ripple {
+        width: 100px;
+        height: 100px;
+    }
+
+    .mic-icon,
+    .stop-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .hint-text {
+        font-size: 0.8rem;
+    }
+
+    .hint-shortcut {
+        font-size: 0.7rem;
+    }
+
+    body {
+        padding-bottom: 100px;
+    }
+
+    .floating-voice-btn {
+        bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .chat-messages {
+        max-height: 350px;
+    }
+
+    .floating-btn-inner {
+        width: 85px;
+        height: 85px;
+    }
+
+    .floating-btn-bg {
+        width: 105px;
+        height: 105px;
+    }
+
+    .floating-btn-ripple {
+        width: 85px;
+        height: 85px;
+    }
+
+    .mic-icon,
+    .stop-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .hint-text {
+        font-size: 0.75rem;
+    }
+
+    .hint-shortcut {
+        font-size: 0.65rem;
+    }
+}
+
+/* ===== 音频播放器样式 ===== */
+.audio-player {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+/* 语音条样式 */
+.voice-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--primary-cyan);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.voice-message:hover {
+    background: rgba(0, 243, 255, 0.15);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.voice-message.playing {
+    background: rgba(255, 0, 255, 0.15);
+    border-color: var(--primary-magenta);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+}
+
+.voice-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--primary-cyan);
+    flex-shrink: 0;
+}
+
+.voice-message.playing .voice-icon {
+    color: var(--primary-magenta);
+}
+
+.voice-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.voice-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex: 1;
+    height: 20px;
+}
+
+.wave-bar {
+    width: 3px;
+    height: 10px;
+    background: var(--primary-cyan);
+    border-radius: 2px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.voice-message.playing .wave-bar {
+    animation: wave 1s ease-in-out infinite;
+}
+
+.voice-message.playing .wave-bar:nth-child(1) { animation-delay: 0s; }
+.voice-message.playing .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+.voice-message.playing .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+.voice-message.playing .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+.voice-message.playing .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes wave {
+    0%, 100% {
+        height: 10px;
+        opacity: 0.5;
+    }
+    50% {
+        height: 20px;
+        opacity: 1;
+    }
+}
+
+.voice-duration {
+    font-size: 0.85rem;
+    color: var(--primary-cyan);
+    font-weight: 500;
+    flex-shrink: 0;
+    min-width: 35px;
+    text-align: right;
+}
+
+.voice-message.playing .voice-duration {
+    color: var(--primary-magenta);
+}
+
+.temp-message {
+    opacity: 0.7;
+}
+
+/* ===== 波形可视化样式 ===== */
+.waveform-container {
+    position: fixed;
+    bottom: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    height: 100px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--primary-cyan);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+    animation: waveformSlideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 99;
+}
+
+@keyframes waveformSlideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+#waveformCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== 键盘提示动画 ===== */
+@keyframes keyHint {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+body.keyboard-active .hint-shortcut {
+    animation: keyHint 1s ease-in-out infinite;
+    color: var(--primary-magenta);
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI语音助手 - 未来对话体验</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 动态背景 -->
+    <div class="bg-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-bg"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- 主要容器 -->
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1 class="title">
+                <span class="title-glow">AI</span>
+                <span class="title-main">语音助手</span>
+            </h1>
+            <p class="subtitle">与未来对话 - 智能语音交互体验</p>
+        </header>
+
+        <!-- 聊天区域 -->
+        <main class="chat-area" id="chatArea">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai-message">
+                    <div class="message-avatar ai-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="message-content">
+                        <div class="message-text">你好！我是AI语音助手。按住屏幕下方的麦克风按钮或按住键盘右侧的 Ctrl 键开始说话，松开即可发送消息！</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 设置面板（简化版） -->
+        <div class="settings-panel">
+            <div class="voice-selector">
+                <label for="voiceSelect">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C13.1046 2 14 2.89543 14 4V12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12V4C10 2.89543 10.8954 2 12 2Z" fill="currentColor"/>
+                        <path d="M19 10V12C19 15.866 15.866 19 12 19C8.13401 19 5 15.866 5 12V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 19V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M8 22H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    语音角色
+                </label>
+                <select id="voiceSelect" class="voice-select">
+                    <option value="Cherry">Cherry - 清甜女声</option>
+                    <option value="Serena">Serena - 优雅女声</option>
+                    <option value="Ethan">Ethan - 沉稳男声</option>
+                    <option value="Chelsie">Chelsie - 活泼女声</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- 悬浮语音按钮 -->
+    <div class="floating-voice-btn" id="floatingVoiceBtn">
+        <div class="floating-btn-bg"></div>
+        <div class="floating-btn-ripple"></div>
+        <div class="floating-btn-inner">
+            <svg class="mic-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C13.1046 2 14 2.89543 14 4V12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12V4C10 2.89543 10.8954 2 12 2Z" fill="currentColor"/>
+                <path d="M19 10V12C19 15.866 15.866 19 12 19C8.13401 19 5 15.866 5 12V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 19V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 22H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="stop-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="6" width="12" height="12" fill="currentColor"/>
+            </svg>
+        </div>
+        <div class="floating-btn-hint">
+            <span class="hint-text">按住说话</span>
+            <span class="hint-shortcut">或 Ctrl</span>
+        </div>
+    </div>
+
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+        </div>
+        <p class="loading-text">AI正在思考...</p>
+    </div>
+
+    <!-- 音频播放器（隐藏） -->
+    <audio id="audioPlayer" style="display: none;"></audio>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

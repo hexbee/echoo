@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# env file
+.env
+
+# Audio files
+*.mp3
+*.wav
+*.flac
+*.ogg
+*.pcm
+*.m4a
+*.aac
