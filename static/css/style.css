@@ -101,14 +101,29 @@ body {
 }
 
 @keyframes float {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    33% { transform: translate(50px, -50px) rotate(120deg); }
-    66% { transform: translate(-50px, 50px) rotate(240deg); }
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    33% {
+        transform: translate(50px, -50px) rotate(120deg);
+    }
+
+    66% {
+        transform: translate(-50px, 50px) rotate(240deg);
+    }
 }
 
 @keyframes grid-move {
-    0% { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
 }
 
 /* ===== 主容器 ===== */
@@ -163,8 +178,15 @@ body {
 }
 
 @keyframes pulse-glow {
-    0%, 100% { filter: drop-shadow(0 0 20px var(--primary-cyan)); }
-    50% { filter: drop-shadow(0 0 40px var(--primary-cyan)) drop-shadow(0 0 60px var(--primary-magenta)); }
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 20px var(--primary-cyan));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 40px var(--primary-cyan)) drop-shadow(0 0 60px var(--primary-magenta));
+    }
 }
 
 @keyframes fadeInDown {
@@ -172,6 +194,7 @@ body {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -215,8 +238,13 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* ===== 消息样式 ===== */
@@ -232,6 +260,7 @@ body {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -327,8 +356,17 @@ body {
 }
 
 @keyframes dotPulse {
-    0%, 100% { transform: translateY(0); opacity: 0.5; }
-    50% { transform: translateY(-4px); opacity: 1; }
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
 }
 
 .ai-thinking-bars {
@@ -356,13 +394,26 @@ body {
     animation: shimmer 1.2s ease-in-out infinite;
 }
 
-.shimmer-bar.bar-1 { width: 80%; }
-.shimmer-bar.bar-2 { width: 60%; }
-.shimmer-bar.bar-3 { width: 70%; }
+.shimmer-bar.bar-1 {
+    width: 80%;
+}
+
+.shimmer-bar.bar-2 {
+    width: 60%;
+}
+
+.shimmer-bar.bar-3 {
+    width: 70%;
+}
 
 @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
 }
 
 /* ===== 设置面板（简化版） ===== */
@@ -439,6 +490,7 @@ body {
         opacity: 0;
         transform: translateX(-50%) translateY(100px);
     }
+
     to {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
@@ -455,10 +507,13 @@ body {
 }
 
 @keyframes breathe {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         opacity: 0.6;
     }
+
     50% {
         transform: scale(1.1);
         opacity: 0.8;
@@ -484,6 +539,7 @@ body {
         transform: scale(0.8);
         opacity: 0.8;
     }
+
     100% {
         transform: scale(1.5);
         opacity: 0;
@@ -535,10 +591,13 @@ body {
 }
 
 @keyframes recording-pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 30px rgba(255, 51, 102, 0.6);
         transform: scale(1);
     }
+
     50% {
         box-shadow: 0 0 60px rgba(255, 51, 102, 0.9);
         transform: scale(1.03);
@@ -640,8 +699,13 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .loading-text {
@@ -655,8 +719,17 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
 }
 
 /* ===== 响应式设计 ===== */
@@ -844,17 +917,34 @@ body {
     animation: wave 1s ease-in-out infinite;
 }
 
-.voice-message.playing .wave-bar:nth-child(1) { animation-delay: 0s; }
-.voice-message.playing .wave-bar:nth-child(2) { animation-delay: 0.1s; }
-.voice-message.playing .wave-bar:nth-child(3) { animation-delay: 0.2s; }
-.voice-message.playing .wave-bar:nth-child(4) { animation-delay: 0.3s; }
-.voice-message.playing .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+.voice-message.playing .wave-bar:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.voice-message.playing .wave-bar:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.voice-message.playing .wave-bar:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.voice-message.playing .wave-bar:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.voice-message.playing .wave-bar:nth-child(5) {
+    animation-delay: 0.4s;
+}
 
 @keyframes wave {
-    0%, 100% {
+
+    0%,
+    100% {
         height: 10px;
         opacity: 0.5;
     }
+
     50% {
         height: 20px;
         opacity: 1;
@@ -901,6 +991,7 @@ body {
         opacity: 0;
         transform: translateX(-50%) translateY(100px);
     }
+
     to {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
@@ -915,8 +1006,17 @@ body {
 
 /* ===== 键盘提示动画 ===== */
 @keyframes keyHint {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.1); }
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
 }
 
 body.keyboard-active .hint-shortcut {
@@ -985,6 +1085,7 @@ body.keyboard-active .hint-shortcut {
     position: relative;
     width: 95%;
     max-width: 900px;
+    height: auto;
     max-height: 85vh;
     background: var(--glass-bg);
     border: 1px solid var(--border-glow);
@@ -1001,6 +1102,7 @@ body.keyboard-active .hint-shortcut {
         opacity: 0;
         transform: translateY(50px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -1014,6 +1116,7 @@ body.keyboard-active .hint-shortcut {
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
+    flex-shrink: 0;
 }
 
 .voice-modal-header h2 {
@@ -1100,6 +1203,14 @@ body.keyboard-active .hint-shortcut {
     gap: 10px;
     overflow-x: auto;
     border-bottom: 1px solid var(--border-glow);
+    flex-shrink: 0;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.voice-tabs::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 .voice-tabs::-webkit-scrollbar {
@@ -1151,9 +1262,12 @@ body.keyboard-active .hint-shortcut {
     overflow-y: auto;
     padding: 20px 25px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-auto-rows: min-content;
     gap: 15px;
     align-content: start;
+    min-height: 200px;
+    /* Ensure it has some base height */
 }
 
 .voice-grid::-webkit-scrollbar {
@@ -1180,6 +1294,10 @@ body.keyboard-active .hint-shortcut {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 130px;
+    height: auto;
 }
 
 .voice-card::before {
@@ -1335,7 +1453,7 @@ body.keyboard-active .hint-shortcut {
     .voice-modal-content {
         width: 100%;
         height: 100%;
-        max-height: 100%;
+        max-height: 100vh;
         border-radius: 0;
     }
 
@@ -1359,12 +1477,16 @@ body.keyboard-active .hint-shortcut {
 
     .voice-grid {
         padding: 15px;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        grid-auto-rows: min-content;
         gap: 10px;
+        min-height: 0;
     }
 
     .voice-card {
         padding: 12px;
+        min-height: 140px;
+        height: auto;
     }
 
     .voice-card-avatar {
