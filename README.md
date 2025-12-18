@@ -1,180 +1,97 @@
 # AI语音助手 - Echoo
 
-一个基于Flask和DashScope的实时语音对话Web应用，具有未来科技感的界面设计。
+基于 Flask + DashScope 的实时语音对话 Web 应用，提供未来感 UI、按住说话的交互、语音角色选择和语音播放体验。
 
-## 功能特性
+## 已实现功能
 
-### ✨ 核心功能
-- **语音对话**: 点击麦克风按钮开始/停止录音，与AI进行语音交互
-- **波形可视化**: 录音时实时显示音频波形，提供视觉反馈
-- **文本对话**: 输入文本，AI回复并生成语音
-- **多种音色**: 支持Cherry、Serena、Ethan、Chelsie四种语音角色
-- **实时播放**: AI回复自动播放语音，可重复播放
-
-### 🎨 界面设计
-- **未来科技感**: 深色主题 + 霓虹色彩
-- **动态背景**: 渐变球体动画 + 网格背景
-- **发光效果**: 按钮、边框、文字发光特效
-- **流畅动画**: 消息滑入、按钮悬浮、加载动画
-- **响应式设计**: 支持桌面端和移动端
+- 按住悬浮麦克风按钮或右侧 Ctrl 键录音，实时波形可视化与录音状态动画。
+- 语音消息发送到 DashScope，流式返回文本与语音，自动展示消息并可点击播放生成的语音。
+- 语音角色选择面板：分类、搜索与高亮选中，包含多种中文/英文/方言/特色声音。
+- “AI 正在思考”加载态、错误提示气泡，以及生成语音文件缓存到 `static/audio/` 便于复用播放。
 
 ## 技术栈
 
-### 后端
-- **Flask**: Web框架
-- **DashScope**: 阿里云通义千问API
-- **OpenAI SDK**: Python客户端
-- **soundfile**: 音频处理
-- **numpy**: 数值计算
-
-### 前端
-- **原生HTML/CSS/JavaScript**: 无框架依赖
-- **Web Audio API**: 浏览器录音
-- **Fetch API**: 异步请求
-- **CSS动画**: 视觉效果
+- **后端**: Flask、Flask-CORS、OpenAI SDK（DashScope 兼容模式）、soundfile、numpy
+- **前端**: 原生 HTML/CSS/JavaScript、Web Audio API 录音、Fetch API、CSS 动画
 
 ## 项目结构
 
 ```
-native_audio/
-├── app.py                 # Flask主程序
-├── main.py               # 原始命令行版本
-├── static/               # 静态文件目录
+.
+├── app.py                # Flask 服务，提供语音/文本接口与静态资源
+├── main.py               # CLI 示例：文本或文件音频对话
+├── static/
 │   ├── index.html        # 主页面
-│   ├── css/
-│   │   └── style.css     # 样式文件
-│   ├── js/
-│   │   └── app.js        # 前端逻辑
-│   └── audio/            # 音频文件缓存目录
-├── .env                  # 环境变量
-└── README.md            # 说明文档
+│   ├── css/style.css     # 霓虹未来感样式与动画
+│   ├── js/app.js         # 录音、波形、播放、语音选择逻辑
+│   └── audio/            # 生成语音缓存目录（运行时创建）
+├── .env.example          # 环境变量示例
+├── pyproject.toml
+├── uv.lock
+└── README.md
 ```
 
-## 安装与运行
+## 快速开始
 
-### 1. 环境准备
-
-确保已安装Python 3.11+和必要的依赖：
+1) 安装依赖（Python 3.11+）
 
 ```bash
-# 安装依赖
-pip install flask flask-cors openai python-dotenv soundfile numpy
+# 推荐：使用 uv
+uv sync
+
+# 或使用 pip
+python -m pip install -e .
 ```
 
-### 2. 配置环境变量
+2) 配置环境变量（复制 .env.example 为 .env 并填写）
 
-编辑`.env`文件，设置您的DashScope API密钥：
-
-```bash
-DASHSCOPE_API_KEY=your_api_key_here
+```
+DASHSCOPE_API_KEY=your_api_key
 DASHSCOPE_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
-DASHSCOPE_MODEL_NAME=qwen3-omni-flash-2025-12-01  # 或其他支持的模型
+DASHSCOPE_MODEL_NAME=qwen3-omni-flash-2025-12-01
 ```
 
-### 3. 启动应用
+3) 启动 Web 应用
 
 ```bash
 python app.py
 ```
 
-应用将在 `http://localhost:5000` 启动
+访问 `http://localhost:5000`，首次使用请允许浏览器麦克风权限。
 
-### 4. 访问应用
+## 使用方式（前端）
 
-打开浏览器访问: `http://localhost:5000`
+- 按住页面右下角麦克风或右侧 Ctrl 键开始录音，松开即发送；录音时展示霓虹波形与录制状态。
+- 录音发送后展示“AI 正在思考”并流式生成回复；AI 消息含文本与可点击播放的语音波形条。
+- 右上角“语音角色”按钮打开角色选择弹窗，可按分类/搜索挑选，选中后用于后续合成声音。
+- 生成的语音会缓存到 `static/audio/` 目录，便于重复播放；若需要可手动清理缓存。
 
-## 使用说明
+## API 接口（后端）
 
-### 语音对话
-1. 点击**点击说话**按钮开始录音
-2. 对着麦克风说话，观察实时波形显示
-3. 再次点击按钮停止录音
-4. AI将处理您的语音并自动播放回复语音
+- `POST /api/chat/audio`
 
-### 文本对话
-1. 在文本框中输入您的问题
-2. 点击发送按钮或按Enter键
-3. AI将回复并生成语音
+  请求体示例：
+  ```json
+  {
+    "audio": "<base64_audio>",
+    "voice": "Cherry"
+  }
+  ```
+  `audio` 为浏览器录音的 base64（前端会转换为 `data:audio/wav;base64,...` 发送），服务端流式生成文本与语音并返回 `text`、`audio_url`、`audio_base64`。
 
-### 切换语音
-使用右上角的**语音角色**下拉菜单选择不同的AI声音
+- `POST /api/chat/text`
 
-## API接口
-
-### POST /api/chat/text
-文本转语音对话
-
-**请求体:**
-```json
-{
+  请求体示例：
+  ```json
+  {
     "text": "你好",
     "voice": "Cherry"
-}
-```
+  }
+  ```
+  直接以文本请求，返回同样的文本与语音字段，可用于自建前端或 CLI。
 
-### POST /api/chat/audio
-语音转语音对话
+## 其他说明
 
-**请求体:**
-```json
-{
-    "audio": "base64_audio_data",
-    "voice": "Cherry"
-}
-```
-
-## 浏览器兼容性
-
-- Chrome 88+
-- Firefox 85+
-- Safari 14.1+
-- Edge 88+
-
-**注意**: 需要HTTPS或localhost才能访问麦克风API
-
-## 注意事项
-
-1. **麦克风权限**: 首次使用需要允许浏览器访问麦克风
-2. **网络要求**: 需要稳定的网络连接访问DashScope API
-3. **音频格式**: 支持WAV、MP3、FLAC、OGG等常见格式
-4. **缓存清理**: `static/audio/`目录会缓存生成的音频文件，可定期清理
-
-## 自定义配置
-
-### 修改语音角色
-在`static/js/app.js`中的`voiceSelect`选项中添加新角色
-
-### 调整界面主题
-编辑`static/css/style.css`中的CSS变量
-
-### 修改默认语音
-在`app.py`中修改`voice`参数默认值
-
-## 故障排除
-
-### 录音失败
-- 检查麦克风权限
-- 确保使用HTTPS或localhost
-- 查看浏览器控制台错误信息
-
-### API调用失败
-- 验证API密钥是否正确
-- 检查网络连接
-- 确认模型名称有效
-
-### 音频无法播放
-- 检查浏览器音频设置
-- 确保音频格式兼容
-- 尝试刷新页面
-
-## 许可证
-
-Apache-2.0 license
-
-## 贡献
-
-欢迎提交Issue和Pull Request！
-
----
-
-**享受与AI的未来对话体验！** 🚀
+- CLI 体验：`python main.py <input_audio_or_url> [output.wav]`（不传参数则默认用示例文本对话）。
+- 浏览器需在 HTTPS 或 localhost 场景下才能访问麦克风。
+- 如果出现录音或播放异常，可检查麦克风授权、网络及浏览器控制台错误；必要时清理 `static/audio/` 缓存。
